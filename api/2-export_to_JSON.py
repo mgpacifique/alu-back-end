@@ -29,7 +29,16 @@ def get_user_todos(user_id):
 
 def main():
     """Program entry point."""
-    user_id = int(sys.argv[1])
+    if len(sys.argv) != 2:
+        print("Usage: {} <employee_id>".format(sys.argv[0]), file=sys.stderr)
+        sys.exit(1)
+
+    try:
+        user_id = int(sys.argv[1])
+    except ValueError:
+        print("employee_id must be an integer", file=sys.stderr)
+        sys.exit(1)
+
     user = get_user(user_id)
     todos = get_user_todos(user_id)
 
